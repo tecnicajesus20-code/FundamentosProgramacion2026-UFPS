@@ -23,8 +23,6 @@ public class ProyectoMotocicletas {
         byte contadorMenu = 2 ;
         int opcion = 0;
         int cantidadKm = 0 ;
-        int hola = 2;
-        hola =+ -2; 
         
         do {
             contadorMenu = 3;
@@ -95,14 +93,10 @@ public class ProyectoMotocicletas {
 
                             } while (contadorMenu != 0);
                         } while (!seleccion);
+                        combustibleMoto = (motoSeleccionada == "Suzuki V-Strom 1000")? 5.3 : 
+                                          (motoSeleccionada == "Honda XL750 Transalp")? 4.4 : 
+                                           0;
 
-                        if (motoSeleccionada == "Suzuki V-Strom 1000"){
-                            combustibleMoto = 5.3 ;
-                        }
-
-                        else if (motoSeleccionada == "Honda XL750 Transalp"){
-                            combustibleMoto = 4.4;
-                        }
 
                         System.out.println("Regresando al menú principal...");
                         contadorMenu = 0;
@@ -134,6 +128,9 @@ public class ProyectoMotocicletas {
                         break;
 
                     case 3:
+                        int iniciarSimulacion = 0 ; 
+                        
+                        do {
                         if (motoSeleccionada  == "" || cantidadKm == 0  ){
 
                             if (motoSeleccionada  == "" ){
@@ -145,29 +142,54 @@ public class ProyectoMotocicletas {
                             }
 
                         }
-
                         else {
                             System.out.println("=============|==================================|============= ");
                             System.out.println("=============|   ¿DESEA INICIAR LA SIMULACION?  |============= ");
                             System.out.println("=============|==================================|============= \n");
-                            System.out.println("(Si/No");
-                            String inputIniciar = input.nextLine();
-                            boolean iniciarSimulacion = inputIniciar == "Si" || inputIniciar == "si";
+                            System.out.println("1. Si");
+                            System.out.println("2. No");
+                            String a = input.nextLine();
+                            iniciarSimulacion = input.nextInt();
 
-                            if (!iniciarSimulacion){
+                            if (iniciarSimulacion < 0 || iniciarSimulacion > 2 ){
+                                System.out.println("Valores invalidos, ingrese solo 1 para SI y 2 para NO");
+                            }
+                            else if (iniciarSimulacion == 2){
                                 System.out.println("Regresando...");
                             }
-
                             else {
+                                if (combustibleMoto < 2.5 || combustibleMoto <2.0 ){
+                                    System.out.println("Viaje fallido por falta de combustible te sobro " + combustibleMoto +" combustible antes de llegar a tu destino y te quedo por recorrer");
+                                }
+                                else{
+                                while (distanciaRecorrida < cantidadKm && combustibleMoto > 0){
+                                    int evento = (int)(Math.random() * 2); 
+                                    String eventoClimatico = "";
+                                    if (evento == 0  ){
+                                        eventoClimatico = "Despejado";
+                                        
+                                    }
+                                    else if (evento == 1){
+                                        eventoClimatico = "Lluvia fuerte";
+                                    }
+                                    combustibleMoto -= (motoSeleccionada == "Suzuki V-Strom 1000")? 2.5 : (motoSeleccionada == "Honda XL750 Transalp")? 2 : 0;
+                    
+                                    distanciaRecorrida += 50 ;
+                                    System.out.println("haz avanzado "+ distanciaRecorrida + " Aun te queda" + combustibleMoto + "combustible para terminar el recorido");
+                                    }
+                                
 
+                                }
                             }
                         }
-
+                        }while (iniciarSimulacion != 2);
+                       break; 
 
                     default:
                         System.out.println("Ingresa solo el rango de numeros del menu (1-4)");
                         contadorMenu --;
                         break;
+                
                 }
             }
         } while (opcion != 4);

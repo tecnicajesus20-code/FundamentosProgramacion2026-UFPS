@@ -15,183 +15,161 @@ public class ProyectoMotocicletas {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        
-        
+
+
         String motoSeleccionada = "";
-        double combustibleMoto = 0.00 ;
-        int distanciaRecorrida = 0; 
-        byte contadorMenu = 2 ; 
-        byte menu = 2;
-        int opcion = 0; 
+        double combustibleMoto = 0;
+        int distanciaRecorrida = 0;
+        byte contadorMenu = 2 ;
+        int opcion = 0;
         int cantidadKm = 0 ;
-         
-        do{
-            if (menu == 1) {
-                        System.out.println("|=============|==================================|=============|");
-                        System.out.println("|=============|      Bienvenido a el sistema     |=============|");
-                        System.out.println("|=============| simulador de rutas y rendimiento |=============|");
-                        System.out.println("|=============|        para motocicletas         |=============|");
-                        System.out.println("|=============|==================================|=============|\n");
-                        System.out.println("|-- Seleccione una opcion:                                     |\n");
-                        System.out.println("|1. Seleccionar una motocicleta                                |");
-                        System.out.println("|2. Configurar una ruta                                        |");
-                        System.out.println("|3. Iniciar Simulacion                                         |");
-                        System.out.println("|4. Salir                                                      |");
-                        System.out.println("|=============|==================================|=============|\n"); 
-                        System.out.println("Felicidades haz seleccionado correctamente la " + motoSeleccionada + "\n");
-                        System.out.print("-- Selecciona lo que quiere hacer (1-4)\n--");
-                        menu = 0;
-                        
-                    }
-            else if (menu == 2){
-                        System.out.println("|=============|==================================|=============|");
-                        System.out.println("|=============|      Bienvenido a el sistema     |=============|");
-                        System.out.println("|=============| simulador de rutas y rendimiento |=============|");
-                        System.out.println("|=============|        para motocicletas         |=============|");
-                        System.out.println("|=============|==================================|=============|\n");
-                        System.out.println("|-- Seleccione una opcion:                                     |\n");
-                        System.out.println("|1. Seleccionar una motocicleta                                |");
-                        System.out.println("|2. Configurar una ruta                                        |");
-                        System.out.println("|3. Iniciar Simulacion                                         |");
-                        System.out.println("|4. Salir                                                      |");
-                        System.out.println("|=============|==================================|=============|\n");
-                        System.out.print("-- Selecciona lo que quiere hacer (1-4)\n--");
-                        menu = 0;
-            }
-            opcion = input.nextInt();
-        switch(opcion){
-            case 1:  
-                contadorMenu = 2 ; 
-                int opcionMoto = 0;
-                System.out.println("=============|==================================|============= ");
-                System.out.println("=============|            Inventario            |============= ");
-                System.out.println("=============|                de                |============= ");
-                System.out.println("=============|           motocicletas           |============= ");
-                System.out.println("=============|==================================|============= \n");    
-                System.out.println("1.- Suzuki V-Strom 1000 (Consumo: 20 km/galón, Tanque: 5.3 galones)");
-                System.out.println("2.- Honda XL750 Transalp (Consumo: 25 km/galón, Tanque: 4.4 galones)");
-                System.out.println("3. Regresar a menu principal\n");
-                do {
-                    System.out.print("Seleccione una opcion\n--");
-                    opcionMoto = input.nextInt();
-                        switch (opcionMoto){
-                        case 1 : 
-                            motoSeleccionada = "Suzuki V-Strom 1000"; 
-                            opcionMoto = 3;
-                            menu = 1 ;
-                            System.out.println("Regresando...");
-                            break;
-                       
-                        case 2:
-                            motoSeleccionada = "Honda XL750 Transalp";
-                            opcionMoto = 3;
-                            menu = 1 ; 
-                            System.out.println("Regresando...");
-                            break;
-                        case 3: 
-                            System.out.println("Regresando...");
-                            menu = 2 ; 
-                            break;
-                        default : 
-                            if (contadorMenu != 0){
-                                System.out.println("Opcion invalida, solo puedes digitar, un numero en el rango asignado (1-2)");
-                                contadorMenu -- ;
+        int hola = 2;
+        hola =+ -2; 
+        
+        do {
+            contadorMenu = 3;
+            System.out.println("|=============|==================================|=============|");
+            System.out.println("|=============|      Bienvenido a el sistema     |=============|");
+            System.out.println("|=============| simulador de rutas y rendimiento |=============|");
+            System.out.println("|=============|        para motocicletas         |=============|");
+            System.out.println("|=============|==================================|=============|\n");
+            System.out.println("|-- Seleccione una opcion:                                     |\n");
+            System.out.println("|1. Seleccionar una motocicleta                                |");
+            System.out.println("|2. Configurar una ruta                                        |");
+            System.out.println("|3. Iniciar Simulacion                                         |");
+            System.out.println("|4. Salir                                                      |");
+            System.out.println("|=============|==================================|=============|\n");
+
+            while (contadorMenu != 0) {
+
+                opcion = input.nextInt();
+
+                switch(opcion){
+                  
+
+                    case 1:
+                        boolean seleccion = false;
+                        int opcionMoto = 0;
+                        do {
+                            contadorMenu = 3;
+                            System.out.println("=============|==================================|============= ");
+                            System.out.println("=============|            Inventario            |============= ");
+                            System.out.println("=============|                de                |============= ");
+                            System.out.println("=============|           motocicletas           |============= ");
+                            System.out.println("=============|==================================|============= \n");
+                            System.out.println("1.- Suzuki V-Strom 1000 (Consumo: 20 km/galón, Tanque: 5.3 galones)");
+                            System.out.println("2.- Honda XL750 Transalp (Consumo: 25 km/galón, Tanque: 4.4 galones)");
+                            System.out.println("3. Regresar a menu principal\n");
+
+                            do {
+                                System.out.print("Seleccione la opcion que desea\n-- ");
+                                opcionMoto = input.nextInt();
+
+                                switch (opcionMoto) {
+                                    case 1:
+                                        motoSeleccionada = "Suzuki V-Strom 1000";
+                                        seleccion = true;
+                                        break;
+
+                                    case 2:
+                                        motoSeleccionada = "Honda XL750 Transalp";
+                                        seleccion = true;
+                                        break;
+
+                                    case 3:
+                                        seleccion = true;
+                                        break;
+
+                                    default:
+                                            System.out.println("-- Opcion invalida, solo puedes digitar un numero en el rango asignado (1-3)");
+                                            contadorMenu--;
+                                            break;
+                                }
+
+                                if (seleccion) {
+                                    if (opcionMoto != 3) {
+                                        System.out.println("Felicidades, has seleccionado correctamente la " + motoSeleccionada + "\n");
+                                    }
+                                    break;
+                                }
+
+                            } while (contadorMenu != 0);
+                        } while (!seleccion);
+
+                        if (motoSeleccionada == "Suzuki V-Strom 1000"){
+                            combustibleMoto = 5.3 ;
+                        }
+
+                        else if (motoSeleccionada == "Honda XL750 Transalp"){
+                            combustibleMoto = 4.4;
+                        }
+
+                        System.out.println("Regresando al menú principal...");
+                        contadorMenu = 0;
+                        break;
+
+                    case 2:
+                        System.out.println("=============|==================================|============= ");
+                        System.out.println("=============|     CONFIGURACION DE LA RUTA     |============= ");
+                        System.out.println("=============|==================================|============= \n");
+
+                        do {
+                            System.out.println("Si desea regresar presione el 0 \n-- Ingresa la distancia total (Km) de la ruta que deseas realizar ");
+                            cantidadKm = input.nextInt();
+
+                            if (cantidadKm < 0 ){
+                                System.out.println("Debes ingresar solo numeros positivos (Mayores a 0)");
                             }
+
+                            else if (cantidadKm ==0 ){
+                                System.out.println("Regresando...");
+                            }
+
                             else {
-                                System.out.println("=============|==================================|============= ");
-                                System.out.println("=============|            Inventario            |============= ");
-                                System.out.println("=============|                de                |============= ");
-                                System.out.println("=============|           motocicletas           |============= ");
-                                System.out.println("=============|==================================|============= \n");    
-                                System.out.println("1.- Suzuki V-Strom 1000 (Consumo: 20 km/galón, Tanque: 5.3 galones)");
-                                System.out.println("2.- Honda XL750 Transalp (Consumo: 25 km/galón, Tanque: 4.4 galones)");
-                                System.out.println("3. Regresar a menu principal\n");
-                                System.out.println("-- Opcion invalida, solo puedes digitar, un numero en el rango asignado (1-2)\nSeleccione la opcion que desea: ");
+                                System.out.println("Felicidades, acabaste de registrar " + cantidadKm +"Km  correctamente en la ruta. ");
+                                break;
+                            }
+
+                        } while (cantidadKm != 0);
+                        break;
+
+                    case 3:
+                        if (motoSeleccionada  == "" || cantidadKm == 0  ){
+
+                            if (motoSeleccionada  == "" ){
+                                System.out.println("Antes de iniciar la simulación debes seleccionar una moto");
+                            }
+
+                            if (cantidadKm == 0 ){
+                                System.out.println("Antes de iniciar la simulación debes registrar una ruta");
+                            }
+
+                        }
+
+                        else {
+                            System.out.println("=============|==================================|============= ");
+                            System.out.println("=============|   ¿DESEA INICIAR LA SIMULACION?  |============= ");
+                            System.out.println("=============|==================================|============= \n");
+                            System.out.println("(Si/No");
+                            String inputIniciar = input.nextLine();
+                            boolean iniciarSimulacion = inputIniciar == "Si" || inputIniciar == "si";
+
+                            if (!iniciarSimulacion){
+                                System.out.println("Regresando...");
+                            }
+
+                            else {
+
                             }
                         }
-                }while(opcionMoto != 3);
-                
-                if (motoSeleccionada == "Suzuki V-Strom 1000"){
-                        combustibleMoto = 5.3 ;
-                }
-                else if (motoSeleccionada == "Honda XL750 Transalp"){
-                        combustibleMoto = 4.4;
-                }
-                
-                break;
-                
-            case 2: 
-                    System.out.println("=============|==================================|============= ");
-                    System.out.println("=============|     CONFIGURACION DE LA RUTA     |============= ");
-                    System.out.println("=============|==================================|============= \n");  
-                    do{
-                        System.out.println("Si desea regresar presione el 0 \n-- Ingresa la distancia total (Km) de la ruta que deseas realizar ");
-                        cantidadKm = input.nextInt();
-                        if (cantidadKm < 0 ){
-                            System.out.println("Debes ingresar solo numeros pusitivos (Mayores a 0)");
-                        }
-                        else if (cantidadKm ==0 ){
-                            System.out.println("Regresando...");
-                            menu = 2; 
-                        }
-                        else {
-                            System.out.println("Felicidades, acabaste de registrar " + cantidadKm +"Km  correctamente en la ruta. ");
-                            
-                            menu = 2;
-                            break;
-                        }
-                        
-                    } while (cantidadKm > 0);
-                break;
-            case 3: 
-                if (motoSeleccionada  == "" || cantidadKm == 0  ){
-                    if (motoSeleccionada  == "" ){
-                        System.out.println("Antes de iniciar la simulación debes seleccionar una moto");                   
-                    }
-                    if (cantidadKm == 0 ){
-                        System.out.println("Antes de iniciar la simulación debes registar una ruta");
-                    }
-                    menu = 2 ; 
-                }
-                else {
-                    System.out.println("=============|==================================|============= ");
-                    System.out.println("=============|   ¿DESEA INICIAR LA SIMULACION?  |============= ");
-                    System.out.println("=============|==================================|============= \n"); 
-                    System.out.println("(Si/No");
-                    String inputIniciar = input.nextLine();
-                    boolean iniciarSimulacion = inputIniciar == "Si" || inputIniciar == "si"; 
-                    if (!iniciarSimulacion){
-                        System.out.println("Regresando...");
-                        menu = 2; 
-                    }
-                    else {
-                        menu = 2;
-                            
-                        }
-                }
-                
-               
-            default :
-                if (contadorMenu != 0 ){
-                    System.out.println("Ingresa solo el rango de numeros del menu (1-4)");
-                    contadorMenu --;
-                }
-                else {
-                        System.out.println("|=============|==================================|=============|");
-                        System.out.println("|=============|      Bienvenido a el sistema     |=============|");
-                        System.out.println("|=============| simulador de rutas y rendimiento |=============|");
-                        System.out.println("|=============|        para motocicletas         |=============|");
-                        System.out.println("|=============|==================================|=============|\n");
-                        System.out.println("|-- Seleccione una opcion:                                     |\n");
-                        System.out.println("|1. Seleccionar una motocicleta                                |");
-                        System.out.println("|2. Configurar una ruta                                        |");
-                        System.out.println("|3. Iniciar Simulacion                                         |");
-                        System.out.println("|4. Salir                                                      |");
-                        System.out.println("|=============|==================================|=============|\n");
+
+
+                    default:
                         System.out.println("Ingresa solo el rango de numeros del menu (1-4)");
-                        contadorMenu = 0; 
+                        contadorMenu --;
+                        break;
                 }
-       }
-       } while (opcion != 4);
+            }
+        } while (opcion != 4);
     }
 }

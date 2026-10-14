@@ -17,14 +17,15 @@ public class ProyectoMotocicletas {
         Scanner input = new Scanner(System.in);
 
 
-        String motoSeleccionada = "";
+        int motoSeleccionada = 0;
         double combustibleMoto = 0;
         int distanciaRecorrida = 0;
         byte contadorMenu = 2 ;
         int opcion = 0;
         int cantidadKm = 0 ;
-        
+       
         do {
+            distanciaRecorrida = 0;
             contadorMenu = 3;
             System.out.println("|=============|==================================|=============|");
             System.out.println("|=============|      Bienvenido a el sistema     |=============|");
@@ -43,7 +44,7 @@ public class ProyectoMotocicletas {
                 opcion = input.nextInt();
 
                 switch(opcion){
-                  
+                 
 
                     case 1:
                         boolean seleccion = false;
@@ -65,12 +66,12 @@ public class ProyectoMotocicletas {
 
                                 switch (opcionMoto) {
                                     case 1:
-                                        motoSeleccionada = "Suzuki V-Strom 1000";
+                                        motoSeleccionada = 1;
                                         seleccion = true;
                                         break;
 
                                     case 2:
-                                        motoSeleccionada = "Honda XL750 Transalp";
+                                        motoSeleccionada = 2;
                                         seleccion = true;
                                         break;
 
@@ -86,15 +87,17 @@ public class ProyectoMotocicletas {
 
                                 if (seleccion) {
                                     if (opcionMoto != 3) {
-                                        System.out.println("Felicidades, has seleccionado correctamente la " + motoSeleccionada + "\n");
+                                        System.out.println("Felicidades, has seleccionado la " +
+                                            (motoSeleccionada == 1 ? "Suzuki V-Strom 1000" :
+                                             motoSeleccionada == 2 ? "Honda XL750 Transalp" : "ninguna moto") + "\n");
                                     }
                                     break;
                                 }
 
                             } while (contadorMenu != 0);
                         } while (!seleccion);
-                        combustibleMoto = (motoSeleccionada == "Suzuki V-Strom 1000")? 5.3 : 
-                                          (motoSeleccionada == "Honda XL750 Transalp")? 4.4 : 
+                        combustibleMoto = (motoSeleccionada == 1 )? 5.3 :
+                                          (motoSeleccionada == 2 )? 4.4 :
                                            0;
 
 
@@ -117,10 +120,14 @@ public class ProyectoMotocicletas {
 
                             else if (cantidadKm ==0 ){
                                 System.out.println("Regresando...");
+                               
+                                contadorMenu = 0;
+                                break;
                             }
 
                             else {
                                 System.out.println("Felicidades, acabaste de registrar " + cantidadKm +"Km  correctamente en la ruta. ");
+                                contadorMenu = 0 ;
                                 break;
                             }
 
@@ -128,27 +135,29 @@ public class ProyectoMotocicletas {
                         break;
 
                     case 3:
-                        int iniciarSimulacion = 0 ; 
-                        
+                        int iniciarSimulacion;
+                       
                         do {
-                        if (motoSeleccionada  == "" || cantidadKm == 0  ){
-
-                            if (motoSeleccionada  == "" ){
-                                System.out.println("Antes de iniciar la simulación debes seleccionar una moto");
+                            if(motoSeleccionada  == 0  || cantidadKm == 0 ) {
+                                if (motoSeleccionada  == 0 ){
+                                       System.out.println("Antes de iniciar la simulacion debes seleccionar una moto");
+                                   }
+                                if (cantidadKm == 0 ){
+                                       System.out.println("Antes de iniciar la simulacion debes registrar una ruta");
+                                   }
+                                contadorMenu = 0;
+                                break;
                             }
-
-                            if (cantidadKm == 0 ){
-                                System.out.println("Antes de iniciar la simulación debes registrar una ruta");
-                            }
-
-                        }
+                                   
                         else {
                             System.out.println("=============|==================================|============= ");
                             System.out.println("=============|   ¿DESEA INICIAR LA SIMULACION?  |============= ");
                             System.out.println("=============|==================================|============= \n");
+                            System.out.println("Haz seleccionado la " + (motoSeleccionada == 1 ? "Suzuki V-Strom 1000" :
+                                                                         motoSeleccionada == 2 ? "Honda XL750 Transalp" : "ninguna moto"));
+                            System.out.println("En esta ruta pretendes recorrer: " + cantidadKm + " Kilometros");
                             System.out.println("1. Si");
                             System.out.println("2. No");
-                            String a = input.nextLine();
                             iniciarSimulacion = input.nextInt();
 
                             if (iniciarSimulacion < 0 || iniciarSimulacion > 2 ){
@@ -156,40 +165,55 @@ public class ProyectoMotocicletas {
                             }
                             else if (iniciarSimulacion == 2){
                                 System.out.println("Regresando...");
+                                contadorMenu = 0;
                             }
                             else {
-                                if (combustibleMoto < 2.5 || combustibleMoto <2.0 ){
-                                    System.out.println("Viaje fallido por falta de combustible te sobro " + combustibleMoto +" combustible antes de llegar a tu destino y te quedo por recorrer");
+                                while (distanciaRecorrida < cantidadKm && combustibleMoto > 0){
+                                if ((motoSeleccionada == 1 && combustibleMoto < 2.5) || (motoSeleccionada == 2 && combustibleMoto < 2.0)) {
+                                    int Total = Math.abs(cantidadKm - distanciaRecorrida);
+                                    System.out.println("Viaje fallido por falta de combustible te sobro " + combustibleMoto +" combustible antes de llegar a tu destino y te quedo por recorrer " + Total + "Kilometros" );
+                                    contadorMenu = 0 ;
+                                    break;
                                 }
                                 else{
-                                while (distanciaRecorrida < cantidadKm && combustibleMoto > 0){
-                                    int evento = (int)(Math.random() * 2); 
-                                    String eventoClimatico = "";
+                                    int evento = (int)(Math.random() * 2);
+                                   
                                     if (evento == 0  ){
-                                        eventoClimatico = "Despejado";
-                                        
+                                        System.out.println("El clima esta despejado, esta vez tuviste suerte ...");
+                                       
                                     }
                                     else if (evento == 1){
-                                        eventoClimatico = "Lluvia fuerte";
+                                        System.out.println("Empezo a llover muy fuerte, tu rendimiento de combustible disminuyo un 15%");
+                                        combustibleMoto -= combustibleMoto * 0.15 ;
+                                       
                                     }
-                                    combustibleMoto -= (motoSeleccionada == "Suzuki V-Strom 1000")? 2.5 : (motoSeleccionada == "Honda XL750 Transalp")? 2 : 0;
-                    
+                                    combustibleMoto -= (motoSeleccionada == 1 )? 2.5 : (motoSeleccionada == 2)? 2 : 0;
+                   
                                     distanciaRecorrida += 50 ;
-                                    System.out.println("haz avanzado "+ distanciaRecorrida + " Aun te queda" + combustibleMoto + "combustible para terminar el recorido");
+                                    System.out.println("haz avanzado "+ distanciaRecorrida + " Aun te queda " + combustibleMoto + " combustible para terminar el recorido");
+                                    if (distanciaRecorrida == cantidadKm ){
+                                        System.out.println("FELICIDADES HAS LLEGADO A TU DESTINO");
+                                       
                                     }
-                                
+                                    }
+                               
 
                                 }
+                                contadorMenu = 0 ;
+                                break;
                             }
                         }
                         }while (iniciarSimulacion != 2);
-                       break; 
-
+                       break;
+                    case 4 :  
+                        System.out.println("============PROGRAMA FINALIZADO============");
+                        contadorMenu= 0 ;
+                        break;
                     default:
                         System.out.println("Ingresa solo el rango de numeros del menu (1-4)");
                         contadorMenu --;
                         break;
-                
+               
                 }
             }
         } while (opcion != 4);
